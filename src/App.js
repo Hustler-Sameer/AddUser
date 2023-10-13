@@ -9,7 +9,7 @@ function App() {
 
     setUsersList((prevUserList) => {
       return [...prevUserList,
-      { name: uName, age: uAge }
+      { name: uName, age: uAge , id: Math.random().toString() }
 
 
 

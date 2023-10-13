@@ -2,20 +2,31 @@ import React, {useState} from "react";
 import Card from "../UI/Card";
 import classes from './AddUser.module.css'
 import Button from "../UI/Button";
+import ErrorModal from "../UI/ErrorModal";
+import Wrapper from "../helpers/Wrapper";
 
 
 
 const AddUser = (props) =>{
     const [enteredUsername , setEnteredUsername] = useState(' ');
     const [enteredAge , setEnteredAge] = useState(' ');
+    const [error , setError] = useState( );
 
     const onSubmitHandler = event =>{
         event.preventDefault();
         console.log('Form Submitted')
         if(enteredUsername.trim().length === 0 || enteredAge.trim().length === 0){
-            return ;
+            setError({
+                title: 'Invalid input' ,
+                message: 'Please enter a valid name and age (non empty values)'
+            })
+            return;
         }
-        if(+enteredAge < 1 ){
+        if(+enteredAge < 1  ){
+            setError({
+                title: 'Invalid Age' ,
+                message: 'Please enter a valid Age (Age > 0)'
+            })
             return;
 
         }
@@ -33,12 +44,18 @@ const AddUser = (props) =>{
         setEnteredAge(event.target.value);
 
     }
+    const setErrorHandler = () => {
+        setError(null)
+    }
    
-  
+  // onError handler we have create in error modal and also we have passed it 
+  // if not understanding revisit video 131 of react course on udemy
 
 
 
     return(
+        <Wrapper>
+        { error && <ErrorModal title={error.title} message={error.message} onErrorHandler={setErrorHandler} />}
         
             <Card className={classes.input}>
         <form onSubmit={onSubmitHandler}>
@@ -49,6 +66,8 @@ const AddUser = (props) =>{
             <Button type='submit' >Add User</Button>
         </form>
         </Card>
+        
+        </Wrapper>
         
 
 
