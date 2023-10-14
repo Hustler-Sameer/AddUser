@@ -44,25 +44,24 @@ const AddUser = (props) =>{
         setEnteredAge(event.target.value);
 
     }
-    const setErrorHandler = () => {
-        setError(null)
-    }
+    
    
   // onError handler we have create in error modal and also we have passed it 
   // if not understanding revisit video 131 of react course on udemy
-
-
+  const setErrorHandler = () => {
+    setError(null)
+}
 
     return(
         <Wrapper>
-        { error && <ErrorModal title={error.title} message={error.message} onErrorHandler={setErrorHandler} />}
+        { error && <ErrorModal title={error.title} message={error.message} onConfirm={setErrorHandler} />}
         
             <Card className={classes.input}>
         <form onSubmit={onSubmitHandler}>
             <label htmlFor='username'>Username</label>
             <input type='text' id="username" value={enteredUsername} onChange={onUsernameHandler}></input>
             <label htmlFor='Age'>Age (Years)</label>
-            <input type='number' id="Age" value={enteredAge} onChange={onAgeHandler}></input>
+            <input type='number' id="Age" value={enteredAge} onConfirm={onAgeHandler}></input>
             <Button type='submit' >Add User</Button>
         </form>
         </Card>
