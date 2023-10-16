@@ -1,10 +1,8 @@
 import React from "react";
 import Card from "./Card";
 import Button from "./Button";
-import classes from './ErrorModal.module.css'
-import  ReactDOM  from "react-dom";
-
-
+import classes from "./ErrorModal.module.css";
+import ReactDOM from "react-dom";
 
 const Backdrop = (props) => {
     return <div className={classes.backdrop} onClick={props.onConfirm} />
